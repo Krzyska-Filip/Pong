@@ -51,11 +51,11 @@ class Puck{
       if(this.y > lpaddle.y - this.r / 2 && this.y < lpaddle.y + paddleHeight + this.r / 2){
         this.x += this.r / 2;
 
-        var ry = (lpaddle.y + paddleHeight / 2) - this.y;
-        var nry = (ry/(paddleHeight/2));
-        var ba = nry * Math.PI / 3;
-        this.Vx = this.ballSpeed * Math.cos(ba);
-        this.Vy = this.ballSpeed * -Math.sin(ba);
+        var relativeIntersect = (lpaddle.y + paddleHeight / 2) - this.y;
+        var normalizedRelativeIntersection = (relativeIntersect /(paddleHeight/2));
+        var bounceAngle = normalizedRelativeIntersection * Math.PI / 3;
+        this.Vx = this.ballSpeed * Math.cos(bounceAngle);
+        this.Vy = this.ballSpeed * -Math.sin(bounceAngle);
 
         this.ballSpeed *= 1.02;
 
@@ -66,11 +66,11 @@ class Puck{
       if(this.y > rpaddle.y - this.r / 2 && this.y < rpaddle.y + paddleHeight + this.r / 2){
         this.x -= this.r / 2;
 
-        var ry = (rpaddle.y + paddleHeight / 2) - this.y;
-        var nry = (ry/(paddleHeight/2));
-        var ba = nry * Math.PI / 3;
-        this.Vx = this.ballSpeed * -Math.cos(ba);
-        this.Vy = this.ballSpeed * -Math.sin(ba);
+        var relativeIntersect = (rpaddle.y + paddleHeight / 2) - this.y;
+        var normalizedRelativeIntersection = (relativeIntersect / (paddleHeight/2));
+        var bounceAngle = normalizedRelativeIntersection * Math.PI / 3;
+        this.Vx = this.ballSpeed * -Math.cos(bounceAngle);
+        this.Vy = this.ballSpeed * -Math.sin(bounceAngle);
 
         this.ballSpeed *= speedMultiplyer;
 
